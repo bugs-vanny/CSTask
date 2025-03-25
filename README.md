@@ -95,3 +95,45 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+
+Starting React Native App 
+
+npx @react-native-community/cli@latest init <FolderName>
+
+npx react-native run-android 
+
+npx react-native run-ins
+
+Screen Navigation: 
+
+1. yarn install                                              
+
+Packages
+yarn add @react-navigation/native        
+yarn add @react-navigation/stack      
+yarn add @react-navigation/native-stack   
+yarn add react-native-safe-area-context     
+yarn add react-native-safe-area-context      
+yarn add react-native-gesture-handler      
+                
+Icons Installations
+Font awesome
+
+yarn add @fortawesome/react-native-fontawesome @fortawesome/fontawesome-svg-core react-native-svg
+yarn add @fortawesome/free-solid-svg-icons
+yarn add @fortawesome/free-brands-svg-icons
+yarn add @fortawesome/free-regular-svg-icons
+
+Sample code: 
+<FontAwesomeIcon icon={faArrowAltCircleDown} size={48} color="black" />
+
+Redux ToolKit
+@reduxjs/toolkit react-redux
+
+2. cd ios 
+pod install
+
+3. Yarn start
+ npx react-native run-ins
+
