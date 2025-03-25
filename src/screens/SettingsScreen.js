@@ -1,19 +1,26 @@
-import React, { useContext } from 'react';
+//SettingsScreen.js
+import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Switch } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { ThemeContext } from '../context/ThemeContext';
+
+// Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faAngleRight, faLock } from '@fortawesome/free-solid-svg-icons';
 import { faBell, faEye, faUser } from '@fortawesome/free-regular-svg-icons';
 
+// Import Redux and the necessary functions
+import { selectDarkMode, toggleTheme } from '../redux/ThemeSlice';
+import { useSelector, useDispatch } from 'react-redux';
+
 const SettingsScreen = () => {
   const navigation = useNavigation();
-  const { darkMode, toggleTheme } = useContext(ThemeContext);
+  const dispatch = useDispatch();
+  const darkMode = useSelector(selectDarkMode);
 
   return (
     <View style={[styles.container, { backgroundColor: darkMode ? '#333' : '#fff' }]}>
       
-      {/* // Account Button */}
+{/* // Account Button */}
 
       <TouchableOpacity
         style={[styles.item, { backgroundColor: darkMode ? '#444' : '#fff' }]}
@@ -24,7 +31,7 @@ const SettingsScreen = () => {
         <FontAwesomeIcon icon={faAngleRight} size={19} style={[styles.arrowIcon, { color: darkMode ? '#fff' : '#000' }]} />
       </TouchableOpacity>
 
-      {/* //  Notifications Button  */}
+{/* //  Notifications Button  */}
 
       <TouchableOpacity
         style={[styles.item, { backgroundColor: darkMode ? '#444' : '#fff' }]}
@@ -35,11 +42,11 @@ const SettingsScreen = () => {
         <FontAwesomeIcon icon={faAngleRight} size={19} style={[styles.arrowIcon, { color: darkMode ? '#fff' : '#000' }]} />
       </TouchableOpacity>
 
-      {/* // Appearance Button */}
+{/* // Appearance Button */}
 
       <TouchableOpacity
         style={[styles.item, { backgroundColor: darkMode ? '#444' : '#fff' }]}
-        onPress={toggleTheme}
+        onPress={() => dispatch(toggleTheme())}
       >
         <FontAwesomeIcon icon={faEye} size={25} style={[styles.icon, { color: darkMode ? '#fff' : '#000' }]} />
         <Text style={[styles.itemText, { color: darkMode ? '#fff' : '#000' }]}>Appearance</Text>
@@ -47,12 +54,12 @@ const SettingsScreen = () => {
           trackColor={{ false: "#767577", true: "#81b0ff" }}
           thumbColor={darkMode ? "#444" : "#f4f3f4"}
           ios_backgroundColor="#3e3e3e"
-          onValueChange={toggleTheme}
+          onValueChange={() => dispatch(toggleTheme())}
           value={darkMode}
         />
       </TouchableOpacity>
 
-      {/* // Privacy Button */}
+  {/* // Privacy Button */}
 
       <TouchableOpacity
         style={[styles.item, { backgroundColor: darkMode ? '#444' : '#fff' }]}

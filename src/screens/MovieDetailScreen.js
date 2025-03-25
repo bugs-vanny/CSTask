@@ -1,16 +1,21 @@
 // MovieDetailScreen.js
 
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, ActivityIndicator, StyleSheet, Text } from 'react-native';
 import axios from 'axios';
+
+//import Screen
 import MovieInfo from '../components/Movie/MovieInfo';
-import { ThemeContext } from '../context/ThemeContext';
+
+//import Redux
+import { useSelector } from 'react-redux';
+import { selectDarkMode } from '../redux/ThemeSlice';
 
 const MovieDetailScreen = ({ route }) => {
   const { imdbID } = route.params;
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { darkMode } = useContext(ThemeContext);
+  const  darkMode = useSelector(selectDarkMode);
 
   useEffect(() => {
     fetchMovieDetails();

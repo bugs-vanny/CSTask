@@ -1,39 +1,38 @@
 // RootStack.js
-
-import React, { useContext } from 'react';
+import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StyleSheet } from 'react-native';
-import MovieScreen from '../screens/MovieScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+
+// Import Theme Redux
+import { useSelector } from 'react-redux';
+import { selectDarkMode } from '../redux/ThemeSlice';
+
+// Import screens
 import TaskScreen from '../screens/TaskScreen';
-import { ThemeContext } from '../context/ThemeContext';
 import HomeStack from './HomeStack';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faCog, faH, faHome, faTasks, faTelevision } from '@fortawesome/free-solid-svg-icons';
 import SettingsStack from './SettingsStack';
+
+// Import FontAwesome icons
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faCog, faTasks, faTelevision } from '@fortawesome/free-solid-svg-icons';
 
 const Tab = createBottomTabNavigator();
 
 const RootStack = () => {
-  const { darkMode } = useContext(ThemeContext);
-  
+  // Use useSelector to access darkMode state from Redux store
+  const darkMode = useSelector(selectDarkMode);
+
   // Determine styles based on the dark mode setting
   const styles = StyleSheet.create({
     headerStyle: {
       backgroundColor: darkMode ? '#181818' : '#f8f8f8',
     },
-    headerTintColor: {
-      color: darkMode ? '#fff' : '#000',
-    },
+    headerTintColor: darkMode ? '#fff' : '#000',
     tabBarStyle: {
       backgroundColor: darkMode ? '#181818' : '#fff',
     },
-    tabBarActiveTintColor: {
-      color: darkMode ? '#fff' : '#000',
-    },
-    tabBarInactiveTintColor: {
-      color: darkMode ? '#888' : '#aaa',
-    },
+    tabBarActiveTintColor: darkMode ? '#fff' : '#000',
+    tabBarInactiveTintColor: darkMode ? '#888' : '#aaa',
     iconSize: 24 // Define a size for icons
   });
 
@@ -41,10 +40,10 @@ const RootStack = () => {
     <Tab.Navigator
       screenOptions={{
         headerStyle: styles.headerStyle,
-        headerTintColor: styles.headerTintColor.color,
+        headerTintColor: styles.headerTintColor,
         tabBarStyle: styles.tabBarStyle,
-        tabBarActiveTintColor: styles.tabBarActiveTintColor.color,
-        tabBarInactiveTintColor: styles.tabBarInactiveTintColor.color,
+        tabBarActiveTintColor: styles.tabBarActiveTintColor,
+        tabBarInactiveTintColor: styles.tabBarInactiveTintColor,
       }}
     >
       <Tab.Screen
@@ -57,7 +56,7 @@ const RootStack = () => {
         }}
       />
       <Tab.Screen
-        name=" Movie"
+        name="Movie"
         component={HomeStack}
         options={{
           tabBarIcon: ({ color }) => (

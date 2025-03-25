@@ -2,10 +2,14 @@ import React, { useContext } from 'react';
 import { View, Text, Image, ScrollView, StyleSheet } from 'react-native';
 import StarRating from './StarRating';
 import GenreBadge from './GenreBadge';
-import { ThemeContext } from '/Users/ivanr/Developer/MyTask/Apps/CSTask/context/ThemeContext.js'; // Ensure path is correct
+import { ThemeContext } from '../../context/ThemeContext.js'; 
+import { useSelector } from 'react-redux';
+import { selectDarkMode } from '../../redux/ThemeSlice.js';
+
+
 
 const MovieInfo = ({ movie }) => {
-  const { darkMode } = useContext(ThemeContext);
+  const  darkMode  = useSelector(selectDarkMode);
 
   return (
     <View style={[styles.container, { backgroundColor: darkMode ? '#333' : '#037aff' }]}> 

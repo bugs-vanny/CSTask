@@ -1,16 +1,24 @@
-import React, { useState, useMemo, useContext } from 'react';
+import React, { useState, useMemo } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Switch } from 'react-native';
+
+// Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faAdd, faSave } from '@fortawesome/free-solid-svg-icons';
+
+//Screens
 import TaskList from '../components/Task/TaskList';
-import { ThemeContext } from '../context/ThemeContext';
+
+// Import Redux and the necessary functions
+import { useSelector } from 'react-redux';
+import { selectDarkMode } from '../redux/ThemeSlice';
 
 const TaskScreen = () => {
   const [task, setTask] = useState('');
   const [tasklist, setTasklist] = useState([]);
   const [editingTask, setEditingTask] = useState(null);
   const [error, setError] = useState('');
-  const { darkMode } = useContext(ThemeContext);
+
+  const darkMode = useSelector(selectDarkMode);
 
   // Handle Add Task
   const addTask = () => {

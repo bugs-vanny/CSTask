@@ -1,28 +1,25 @@
-// HomeScreen.js
+// MovieScreen.js
 
-import React, { useEffect, useState, useContext } from 'react';
-import {
-  SafeAreaView,
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  Image,
-  ActivityIndicator,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {SafeAreaView, View, Text, StyleSheet, FlatList, Image, ActivityIndicator, TextInput, TouchableOpacity} from 'react-native';
 import axios from 'axios';
+
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch, faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons';
+
 import { Dimensions } from 'react-native';
-import { ThemeContext } from '../context/ThemeContext';
+
 import StyledText from '../components/StyledText';
+
+// Import Redux (theme)
+import { selectDarkMode } from '../redux/ThemeSlice';
+import { useSelector } from 'react-redux';
+
 
 const { width } = Dimensions.get('window');
 
 const MovieHomeScreen = ({ navigation }) => {
-  const { darkMode } = useContext(ThemeContext);
+  const darkMode = useSelector(selectDarkMode);
   
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);

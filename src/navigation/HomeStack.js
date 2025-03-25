@@ -1,15 +1,20 @@
 // HomeStack.js
 
-import React, { useContext } from 'react';
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import MovieHomeScreen from '../screens/MovieScreen'; // Ensure correct path
-import MovieDetailScreen from '../screens/MovieDetailScreen'; // Ensure correct path
-import { ThemeContext } from '../context/ThemeContext'; // Ensure correct path
+
+// Import screens
+import MovieHomeScreen from '../screens/MovieScreen'; 
+import MovieDetailScreen from '../screens/MovieDetailScreen'; 
+
+// Import Redux and the necessary functions
+import { useSelector } from 'react-redux';
+import { selectDarkMode } from '../redux/ThemeSlice';
 
 const Stack = createStackNavigator();
 
 const HomeStack = () => {
-    const { darkMode } = useContext(ThemeContext);
+    const darkMode = useSelector(selectDarkMode);
 
     return (
         <Stack.Navigator

@@ -1,18 +1,23 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+
+// Importing Screens
 import SettingsScreen from '../screens/SettingsScreen';
 import TaskScreen from '../screens/TaskScreen'; 
 import NotificationsScreen from '../screens/NotificationsScreen';
 import PrivacyScreen from '../screens/PrivacyScreen';
-import { ThemeContext } from '../context/ThemeContext';
 import AccountScreen from '../screens/AccountScreen';
+
+// Importing Theme
+import { selectDarkMode } from '../redux/ThemeSlice';
+import { useSelector } from 'react-redux';
+
 
 const Stack = createStackNavigator();
 
 const SettingsStack = () => {
   // Accessing the Theme Context
-  
-  const { darkMode } = useContext(ThemeContext);
+  const darkMode = useSelector(selectDarkMode);
 
   return (
     <Stack.Navigator

@@ -1,12 +1,15 @@
-// screens/PrivacyScreen.js
+// screens/NotificationScreen.js
 
 import React, { useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 import StyledText from '../components/StyledText';
-import { ThemeContext } from '../context/ThemeContext'; // Ensure the path is correct based on your structure
+
+// Import Redux and the necessary functions
+import { useSelector } from 'react-redux';
+import { selectDarkMode } from '../redux/ThemeSlice';
 
 const NotificationsScreen = () => {
-  const { darkMode } = useContext(ThemeContext);
+  const darkMode = useSelector(selectDarkMode);
 
   return (
     <View style={[styles.container, { backgroundColor: darkMode ? '#333' : '#f5f5f5' }]}>

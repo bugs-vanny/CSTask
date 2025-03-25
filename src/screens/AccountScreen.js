@@ -1,11 +1,16 @@
 
 
-import React, { useContext } from 'react';
-import { View, Text, Switch, StyleSheet, Button } from 'react-native';
-import { ThemeContext } from '../context/ThemeContext';
+import React from 'react';
+import { View, Text, Switch, StyleSheet } from 'react-native';
+
+// Import Redux and the necessary functions
+import { useDispatch, useSelector } from 'react-redux';
+import { selectDarkMode, toggleTheme } from '../redux/ThemeSlice';
+
 
 const AccountScreen = () => {
-    const { darkMode, toggleTheme } = useContext(ThemeContext);
+  const dispatch = useDispatch();
+  const darkMode = useSelector(selectDarkMode);
 
     return (
       <View style={[styles.container, { backgroundColor: darkMode ? '#333' : '#fff' }]}>
@@ -17,7 +22,7 @@ const AccountScreen = () => {
             trackColor={{ false: "#767577", true: "#81b0ff" }}
             thumbColor={darkMode ? "#f5dd4b" : "#f4f3f4"}
             ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleTheme}
+            onValueChange={() => dispatch(toggleTheme())}
             value={darkMode}
           />
         </View>
